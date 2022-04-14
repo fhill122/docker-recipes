@@ -1,0 +1,17 @@
+version: "3.0"
+services: 
+  kalibr:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        http_proxy: http://192.168.233.115:7890
+        https_proxy: http://192.168.233.115:7890
+    # command: /bin/bash
+    environment:
+      DISPLAY: $DISPLAY
+    volumes:
+      - ./workspace:/workspace
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ~/.Xauthority:/root/.Xauthority
+    network_mode: "host"
